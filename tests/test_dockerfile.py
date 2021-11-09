@@ -21,7 +21,7 @@ def test_python_is_installed(host, version):
 
 def test_slurmd_version(host):
     cmd = host.run("scontrol show config | grep SLURM_VERSION")
-    assert "20.11.7" in cmd.stdout
+    assert "20.11.8" in cmd.stdout
 
 
 def test_mariadb_is_listening(host, Slow):
