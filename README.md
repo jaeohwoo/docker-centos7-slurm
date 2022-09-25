@@ -8,17 +8,19 @@ container runs the following processes:
 * slurmd (The compute node daemon for Slurm)
 * slurmctld (The central management daemon of Slurm)
 * slurmdbd (Slurm database daemon)
+* slurmrestd (Slurm REST API daemon)
 * munged (Authentication service for creating and validating credentials)
 * mariadb (MySQL compatible database)
 * supervisord (A process control system)
 
-It also has the following Python versions installed, including the
-corresponding -devel and -pip packages:
+It also has the following Python versions installed using
+[pyenv](https://github.com/pyenv/pyenv):
 
-* Python 3.6
-* Python 3.7
-* Python 3.8
-* Python 3.9
+* 3.6.15
+* 3.7.12
+* 3.8.12
+* 3.9.9
+* 3.10.0
 
 ## Usage
 
@@ -28,7 +30,7 @@ available.  To use the latest available image, run:
 
 ```shell
 docker pull giovtorres/docker-centos7-slurm:latest
-docker run -it -h slurmctl giovtorres/docker-centos7-slurm:latest
+docker run -it -h slurmctl --cap-add sys_admin giovtorres/docker-centos7-slurm:latest
 ```
 
 The above command will drop you into a bash shell inside the container. Tini
@@ -42,6 +44,7 @@ mysqld                           RUNNING   pid 24, uptime 0:02:35
 slurmctld                        RUNNING   pid 25, uptime 0:02:35
 slurmd                           RUNNING   pid 22, uptime 0:02:35
 slurmdbd                         RUNNING   pid 26, uptime 0:02:35
+slurmrestd                       RUNNING   pid 456, uptime 0:02:00
 ```
 
 In `slurm.conf`, the **ControlMachine** hostname is set to **slurmctl**. Since
